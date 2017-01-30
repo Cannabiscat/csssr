@@ -5,13 +5,15 @@ const webpack = require('webpack');
 module.exports = {
   context: `${__dirname}/frontend`,
   entry: {
-    home: './home',
-    about: './about',
+    app: './app',
   },
   output: {
     path: `${__dirname}/public/`,
     filename: '[name].js',
     library: '[name]',
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   },
   watch: NODE_ENV === 'development',
 
@@ -26,9 +28,9 @@ module.exports = {
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(NODE_ENV),
     }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-    }),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'common',
+    // }),
   ],
 
   module: {
@@ -36,7 +38,7 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel-loader',
       query: {
-        presets: ['es2015'],
+        presets: ['es2015', 'react', 'stage-0', 'stage-1'],
       },
     }],
   },
@@ -49,6 +51,5 @@ if (NODE_ENV === 'production') {
         drop_console: true,
         unsafe: true,
       },
-    },
-  ));
+    }));
 }
