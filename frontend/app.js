@@ -1,17 +1,6 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import Comps from './component';
-
-class App extends PureComponent {
-  render() {
-    return (
-      <div className='app'>
-        <h1>Hi!! I am The App!!</h1>
-        <Comps />
-      </div>
-    );
-  }
-}
+import { App } from './components/component';
 
 ReactDOM.render(
   <App />,
