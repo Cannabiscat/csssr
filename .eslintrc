@@ -25,6 +25,8 @@
       "react/jsx-uses-react": 1,
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/jsx-uses-vars": 1,
-      "react/prefer-stateless-function": [0, { "ignorePureComponents": 0 }]
+      "react/prefer-stateless-function": [0, { "ignorePureComponents": 0 }],
+      "react/require-default-props": 0,
+      "no-alert": 0,
     }
 }
