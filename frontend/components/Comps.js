@@ -4,7 +4,12 @@ import RepoInput from './RepoInput';
 export default class Comps extends PureComponent {
   constructor() {
     super();
-    this.state = { response: {}, repos: [], status: true, name: 'none' };
+    this.state = {
+      response: {},
+      repos: [],
+      status: true,
+      name: 'none',
+    };
     this.handleBlur = this.handleBlur.bind(this);
   }
   componentDidMount() {
@@ -26,7 +31,6 @@ export default class Comps extends PureComponent {
     return (
       <div>
         <input type='text' placeholder={this.props.user} ref={(ref) => { this.input = ref; }} onBlur={this.handleBlur} />
-        Status: {this.state.status.toString()}
         <RepoInput repos={this.state.repos} name={this.state.name} />
       </div>
     );
