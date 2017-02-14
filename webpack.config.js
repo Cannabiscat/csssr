@@ -5,7 +5,7 @@ const webpack = require('webpack');
 module.exports = {
   context: `${__dirname}/frontend`,
   entry: {
-    app: ['./app', './components/Comps', './components/App'],
+    app: ['./app', './components/App'],
   },
   output: {
     path: `${__dirname}/public/`,

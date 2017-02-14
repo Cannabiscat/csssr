@@ -1,2 +1,71 @@
-table .c { color: red }
-.a .c { color: green }
+div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+ul {
+    display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: .1em .2em .1em .1em;
+	width: 50%;
+	border: solid thin grey;
+}
+li div {
+	flex-direction: row;
+	width: auto;
+}
+.input-container {
+	border: solid thin grey;
+	width: 32%;
+	height: 3em;
+	padding: 1em;
+}
+.no-issues {
+	width: 30%;
+	margin: 0 35% 0 35%;
+	text-align: center;
+}
+
+.issue-title {
+    background-color: #aec687;
+    margin: 0;
+    padding: 0 0 0 .5em;
+}
+
+.issue-body {
+    background-color: #f9f9f9;
+	padding: .5em 1em 0.5em 1em;
+	color: #454545;
+}
+
+.issue-item {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    background-color: #132c69;
+    border: solid thin green;
+    margin: 0 auto 1em auto;
+}
+
+.user-url {
+	color: white;
+}
+
+.input-area {
+	flex-direction: row;
+}
+
+.requestStatus {
+	margin-left: 1em;
+	display: flex;
+}
+
+.requestStatus img {
+	margin: auto;
+	width: 15px;
+	height: 15px;
+}
