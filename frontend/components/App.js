@@ -20,16 +20,32 @@ export default class App extends PureComponent {
     });
     this.setState({ ...response });
   }
+  requestStatus() {
+    switch (this.state.requestStatus) {
+      case 'loaded':
+        return (<img src='../../img/success.png' alt='success' />);
+      case 'start':
+        return (<img src='../../img/35.gif' alt='loading' />);
+      case 'error':
+        return (<img src='../../img/error.png' alt='error' />);
+      default:
+        return ('');
+    }
+  }
   render() {
     return (
       <div className='app'>
         <h1>Github Issue Viewer</h1>
         <div className='input-container'>
-          <UsernameInput inFunction={this.getData} />
+          <UsernameInput
+            receive={this.getData}
+            requestStatusHandler={this.requestStatus}
+          />
           <RepoInput
-            inFunction={this.getData}
+            receive={this.getData}
             repos={this.state.repoArray}
             repoOwner={this.state.username}
+            requestStatusHandler={this.requestStatus}
           />
         </div>
         <IssueList

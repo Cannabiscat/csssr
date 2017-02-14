@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-// import RepoInput from './RepoInput';
 
 export default class UsernameInput extends PureComponent {
   constructor() {
@@ -14,7 +13,7 @@ export default class UsernameInput extends PureComponent {
       load: value => (event) => {
         const status = event.target.status === 200 ? 'loaded' : 'error';
         this.setState({ requestStatus: status });
-        this.props.inFunction({
+        this.props.receive({
           repoArray: JSON.parse(event.target.response),
           username: value,
         });
@@ -40,26 +39,27 @@ export default class UsernameInput extends PureComponent {
   }
 
   render() {
-    const requestStatus = () => {
-      switch (this.state.requestStatus) {
-        case 'loaded':
-          return (<img src='../../img/success.png' alt='success' />);
-        case 'start':
-          return (<img src='../../img/35.gif' alt='loading' />);
-        case 'error':
-          return (<img src='../../img/error.png' alt='error' />);
-        default:
-          return ('');
-      }
-    };
+    // const requestStatus = () => {
+    //   switch (this.state.requestStatus) {
+    //     case 'loaded':
+    //       return (<img src='../../img/success.png' alt='success' />);
+    //     case 'start':
+    //       return (<img src='../../img/35.gif' alt='loading' />);
+    //     case 'error':
+    //       return (<img src='../../img/error.png' alt='error' />);
+    //     default:
+    //       return ('');
+    //   }
+    // };
     return (
       <div className='input-area' id='username-input'>
         <input type='text' placeholder='Name of Github user' ref={(ref) => { this.input = ref; }} onBlur={this.handleOnBlur} />
-        <span className='requestStatus'>{requestStatus()}</span>
+        <span className='requestStatus'>{this.props.requestStatusHandler.call(this)}</span>
       </div>
     );
   }
 }
 UsernameInput.propTypes = {
-  inFunction: React.PropTypes.func.isRequired,
+  receive: React.PropTypes.func.isRequired,
+  requestStatusHandler: React.PropTypes.func.isRequired,
 };

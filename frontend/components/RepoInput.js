@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-// import IssueList from './IssueList';
 
 export default class RepoInput extends PureComponent {
   constructor() {
@@ -14,7 +13,7 @@ export default class RepoInput extends PureComponent {
       load: value => (event) => {
         const status = event.target.status === 200 ? 'loaded' : 'error';
         this.setState({ requestStatus: status });
-        this.props.inFunction({
+        this.props.receive({
           issueArray: JSON.parse(event.target.response).map((item, index) => {
             const newItem = { ...item, idList: index };
             return newItem;
@@ -34,35 +33,9 @@ export default class RepoInput extends PureComponent {
         return item;
       });
       xhr.send();
-      // fetch(`https://api.github.com/repos/${this.props.repoOwner}/${event.target.value}/issues?r=${Math.random(100)}`)
-      //   .then((r) => {
-      //     this.setState({ requestStatus: r.status });
-      //     return r.json();
-      //   })
-      //   .then((data) => {
-      //     this.props.inFunction({
-      //       issueArray: data.map((item, index) => {
-      //         const newItem = { ...item, idList: index };
-      //         return newItem;
-      //       }),
-      //       reponame: event.target.value,
-      //     });
-      //   });
     }
   }
   render() {
-    const requestStatus = () => {
-      switch (this.state.requestStatus) {
-        case 'loaded':
-          return (<img src='../../img/success.png' alt='success' />);
-        case 'start':
-          return (<img src='../../img/35.gif' alt='loading' />);
-        case 'error':
-          return (<img src='../../img/error.png' alt='error' />);
-        default:
-          return ('');
-      }
-    };
     const reposList = this.props.repos.map((item, index) => {
       return {
         reponame: item.full_name.substr(this.props.repoOwner.length + 1),
@@ -75,7 +48,7 @@ export default class RepoInput extends PureComponent {
           {reposList}
         </datalist>
         <input type='text' list='repositories' onBlur={this.handleOnBlur} placeholder="Name of Github user's repo" />
-        <span className='requestStatus'>{requestStatus()}</span>
+        <span className='requestStatus'>{this.props.requestStatusHandler.call(this)}</span>
       </div>
     );
   }
@@ -83,5 +56,6 @@ export default class RepoInput extends PureComponent {
 RepoInput.propTypes = {
   repos: React.PropTypes.array,
   repoOwner: React.PropTypes.string,
-  inFunction: React.PropTypes.func.isRequired,
+  receive: React.PropTypes.func.isRequired,
+  requestStatusHandler: React.PropTypes.func.isRequired,
 };
